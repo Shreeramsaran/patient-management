@@ -15,7 +15,7 @@ import java.util.UUID;
 
 @Service
 public class PatientService {
-    private PatientRepository patientRepository;
+    private final PatientRepository patientRepository;
 
     public PatientService(PatientRepository patientRepository){
         this.patientRepository = patientRepository;
@@ -55,5 +55,9 @@ public class PatientService {
 
         Patient updatedPatient = patientRepository.save(patient);
         return PatientMapper.toDTO(updatedPatient);
+    }
+
+    public void deletePatient(UUID id) {
+        patientRepository.deleteById(id);
     }
 }
